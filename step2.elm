@@ -4,7 +4,7 @@ import Element exposing (Element, toHtml)
 import Color exposing (..)
 import Collage exposing (..)
 
-what = "Display a blue box containing text 'hello'"
+what = "Display a blue box and cutted red box"
 
 main =
     div [] 
