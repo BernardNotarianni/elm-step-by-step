@@ -4,3 +4,5 @@ Baby steps to learn Elm.
 
 Inspired by [Elm Challenges](https://github.com/pdamoc/elmChallenges) and
 adapted for beginners in programming.
+
+Working on Elm 0.17
