@@ -159,34 +159,38 @@ canvas model =
     canvasSize = squareSizeInPixel * canvasSizeInSquare
   in
     collage canvasSize canvasSize
-      [ snakeForm model.snake
-      , fruitsForm model.fruits
-      , coloredSquare blue (1,1)
-      , coloredSquare black (3,10)
-      , coloredSquare green (39,39)
+      [ snakeForm model
+      , fruitsForm model
+      , coloredSquare (1,1) blue
+      , coloredSquare (3,10) black 
+      , coloredSquare (39,39) green 
       ]
 
-snakeForm : List (Int,Int) -> Form
-snakeForm listOfPositions =
-  let
-    squares = map (\ p -> coloredSquare red p ) listOfPositions
-  in
-    group squares
+snakeForm : Model -> Form
+snakeForm model =
+  coloredSquares model.snake red
 
-fruitsForm : List (Int,Int) -> Form
-fruitsForm listOfPositions =
-  let
-    squares = map (\ p -> coloredSquare yellow p ) listOfPositions
-  in
-    group squares
+fruitsForm : Model -> Form
+fruitsForm model =
+  coloredSquares model.fruits yellow
+
+
 
 -- INTERNALS
-coloredSquare : Color -> (Int, Int) -> Form
-coloredSquare color (x,y) =
+
+coloredSquare : (Int, Int) -> Color -> Form
+coloredSquare (x,y) color =
   let
     squareSize = toFloat squareSizeInPixel
   in
     rect squareSize squareSize |> filled color |> atXY (x,y)
+
+coloredSquares : List (Int, Int) -> Color -> Form
+coloredSquares listOfPositions color =
+  let
+    squares = map (\ p -> coloredSquare p color ) listOfPositions
+  in
+    group squares
 
 atXY : (Int, Int) -> Form -> Form
 atXY (x, y) =
