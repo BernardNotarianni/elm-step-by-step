@@ -293,5 +293,5 @@ warpWhenBeyondEdge (x,y) =
 warp : Int -> Int
 warp a =
   if a < 0 then canvasSizeInSquare - 1
-  else if a > canvasSizeInSquare then 0
+  else if a >= canvasSizeInSquare then 0
   else a
