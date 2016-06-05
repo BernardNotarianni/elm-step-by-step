@@ -1,4 +1,5 @@
 import Html exposing (Html, div, h2, p)
+import Html.Attributes exposing (style)
 import Html.App as App
 import Element exposing (Element, toHtml)
 import Keyboard exposing (KeyCode)
@@ -197,7 +198,11 @@ canvas : Model -> Element
 canvas model =
   let
     canvasSize = squareSizeInPixel * canvasSizeInSquare
-    gameForms = [snakeForm model, fruitsForm model]
+    gameForms =
+      [ background
+      , snakeForm model
+      , fruitsForm model
+      ]
     forms =
       if model.running then
         gameForms
@@ -213,6 +218,13 @@ snakeForm model =
 fruitsForm : Model -> Form
 fruitsForm model =
   coloredSquares model.fruits yellow
+
+background : Form
+background =
+  let
+    squareSize = (squareSizeInPixel * canvasSizeInSquare) |> toFloat
+  in
+    rect squareSize squareSize |> filled grey
 
 gameOver : Form
 gameOver =
